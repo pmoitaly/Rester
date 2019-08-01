@@ -23,13 +23,6 @@ Rester is a fork of ArrestDB as codebase with many improvements and new features
 - Changed class constructors names to __construct 
 - Added [ne] (not equal) and [bt] (between) operators
 
-Examples:
-
-	# Get all the customers with name different than 'James'
-	GET http://api.example.com/customers/?name[ne]=James
-	
-	# Get all the customers with id between 12 and 16
-	GET http://api.example.com/customers/?id[bt]=12,16
 
 ##Installation
 
@@ -89,6 +82,14 @@ To put this into practice below are some example of how you would use the Rester
 
 	# Delete customer "123" from the "customers" table
 	DELETE http://api.example.com/customers/123
+
+New in this fork:
+
+	# Get all the customers with name different than 'James'
+	GET http://api.example.com/customers/?name[ne]=James
+	
+	# Get all the customers with id between 12 and 16
+	GET http://api.example.com/customers/?id[bt]=12,16
 
 Please note that `GET` calls accept the following query string variables:
 
