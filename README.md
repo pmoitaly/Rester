@@ -18,6 +18,9 @@ Rester is a fork of ArrestDB as codebase with many improvements and new features
 - Custom API functions
 - Filters
 
+##In this fork
+- Added support for blob files (tested with MySQL only)
+- Changed class constructors names to __construct 
 
 ##Installation
 
