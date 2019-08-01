@@ -15,7 +15,7 @@ class DBController
 	
 	static $db = null;
 	
-	function DBController() {
+	function __construct() {
 	
 		$options = array
 				(
@@ -164,37 +164,40 @@ class DBController
 		$routeFields = array();
 		
 		foreach($result as $f) {
-			$routeField = new RouteField();
+			$type = RouteField::getTypeFromMySQL($f['Type']);
+			if (READ_BLOB || ( $type != 'blob')) {
+				$routeField = new RouteField();
+					
+				$routeField->fieldName = $f["Field"];
+				$routeField->fieldType = $type;
+				$routeField->isRequired = ($f["Null"] == "NO") ? true : false;
+				$routeField->defaultValue = $f["Default"];
+				$routeField->description = $routeField->fieldName." field ".$routeField->fieldType;
+				if($f["Extra"] == "auto_increment") {
+					$routeField->isAutoIncrement = TRUE;
+				}
 				
-			$routeField->fieldName = $f["Field"];
-			$routeField->fieldType = RouteField::getTypeFromMySQL($f["Type"]);
-			$routeField->isRequired = ($f["Null"] == "NO") ? true : false;
-			$routeField->defaultValue = $f["Default"];
-			$routeField->description = $routeField->fieldName." field ".$routeField->fieldType;
-			if($f["Extra"] == "auto_increment") {
-				$routeField->isAutoIncrement = TRUE;
-			}
-			
-			if(isset($currentRelations)) {
-				foreach($currentRelations as $r) {
-					if($r->field == $routeField->fieldName && $r->route == $route->routeName) {
-						$routeField->setRelation($r);
-						ResterUtils::Log("+++ ADD RELATION: ".$route->routeName." >> ".$routeField->fieldType);
-					}
-					//Inverses
-					if($r->destinationRoute == $route->routeName && $r->relationName == $routeField->fieldName && $r->inverse) {
-						$routeField->setRelation($r);
-						ResterUtils::Log("+++ ADD INVERSE: ".$route->routeName." >> ".$routeField->fieldName);
+				if(isset($currentRelations)) {
+					foreach($currentRelations as $r) {
+						if($r->field == $routeField->fieldName && $r->route == $route->routeName) {
+							$routeField->setRelation($r);
+							ResterUtils::Log("+++ ADD RELATION: ".$route->routeName." >> ".$routeField->fieldType);
+						}
+						//Inverses
+						if($r->destinationRoute == $route->routeName && $r->relationName == $routeField->fieldName && $r->inverse) {
+							$routeField->setRelation($r);
+							ResterUtils::Log("+++ ADD INVERSE: ".$route->routeName." >> ".$routeField->fieldName);
+						}
 					}
 				}
-			}
+				
+				if($f["Key"] == "PRI") {
+					$routeField->isKey = true;
+					$route->primaryKey = $routeField;
+				}
 			
-			if($f["Key"] == "PRI") {
-				$routeField->isKey = true;
-				$route->primaryKey = $routeField;
+				$routeFields[$routeField->fieldName]=$routeField;
 			}
-		
-			$routeFields[$routeField->fieldName]=$routeField;
 		}
 			
 		return $routeFields;

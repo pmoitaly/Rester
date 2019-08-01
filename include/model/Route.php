@@ -95,7 +95,11 @@ class Route {
 			}
 			
 			if($rf->fieldType == "json") {
-				$objec[$rf->fieldName]="JSON";
+				$object[$rf->fieldName]="JSON";
+			}
+
+			if(READ_BLOB && ($rf->fieldType == "blob")) {
+				$object[$rf->fieldName]=base64_encode($object[$rf->fieldName]);
 			}
 		}
 		return $object;
