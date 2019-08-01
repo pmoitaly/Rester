@@ -329,6 +329,14 @@ class DBController
 						case "le":
 							$q.="<= ".$queryValue;
 							break;
+						case "ne":
+							$q.="<> '".$queryValue."'";
+							break;
+						case "bt":
+							if (is_array($val) && (count($val)==2)) {
+								$q.="between '".$val[0]."' and '".$val[1]."'";
+							}
+							break;
 						default:
 							$q.="= '".$queryValue."'";
 							break;
