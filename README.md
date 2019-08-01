@@ -21,6 +21,15 @@ Rester is a fork of ArrestDB as codebase with many improvements and new features
 ##In this fork
 - Added support for blob files (tested with MySQL only)
 - Changed class constructors names to __construct 
+- Added [ne] (not equal) and [bt] (between) operators
+
+Examples:
+
+	# Get all the customers with name different than 'James'
+	GET http://api.example.com/customers/?name[ne]=James
+	
+	# Get all the customers with id between 12 and 16
+	GET http://api.example.com/customers/?id[bt]=12,16
 
 ##Installation
 
