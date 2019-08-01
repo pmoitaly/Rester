@@ -8,7 +8,7 @@ class RouteCommand {
 	var $parameters;
 	var $description;
 	
-	function RouteCommand($method, $routeName, $routeCommand, $callback, $parameters = NULL, $description = NULL) {
+	function __construct($method, $routeName, $routeCommand, $callback, $parameters = NULL, $description = NULL) {
 		$this->method = $method;
 		$this->routeName = $routeName;
 		$this->routeCommand = $routeCommand;

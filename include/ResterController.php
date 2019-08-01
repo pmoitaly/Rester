@@ -23,7 +23,7 @@ class ResterController {
 	*/
 	var $publicMethods;
 	
-	function ResterController() {
+	function __construct() {
 		$this->dbController = new DBController();
 		$this->checkConnectionStatus();
 		
@@ -568,7 +568,7 @@ class ResterController {
 		
 		$result = $this->dbController->getObjectsFromDB($route, $filters, $this->getAvailableRoutes(), $orFilter);
 		
-		
+
 		
 		/*if(count($route->getRelationFields(TRUE)) > 0) {
 		

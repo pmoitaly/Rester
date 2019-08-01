@@ -5,7 +5,7 @@ class RouteFileProcessor {
 	var $field;
 	var $acceptedTypes = array();
 
-	function RouteFileProcessor($field, $acceptedTypes = array("image/png", "image/jpg")) {
+	function __construct($field, $acceptedTypes = array("image/png", "image/jpg")) {
 		$this->field = $field;
 		$this->acceptedTypes = $acceptedTypes;
 	}
