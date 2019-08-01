@@ -21,4 +21,7 @@ define('CACHE_ENABLED', true);
 //Enable OAuth 1.0 Authentication
 define('ENABLE_OAUTH', true);
 
+//Read BLOB fields with conversion to Base64
+define('READ_BLOB', true);
+
 ?>
