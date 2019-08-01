@@ -14,17 +14,21 @@ class RouteField {
 	var $isAutoIncrement = false;
 	
 	static function getTypeFromMySQL($mysqlType) {
-		$type = "string";
-		if(strpos($mysqlType, "int") !== false) {
-			$type = "integer";
+		$type = 'string';
+		if(strpos($mysqlType, 'int') !== false) {
+			$type = 'integer';
 		}
 		
 		if(strtolower($mysqlType) == "enum('false','true')" 
 				|| strtolower($mysqlType) == "enum('true','false')" 
-				|| strpos($mysqlType, "bool") !== false) {
-			$type = "boolean";
+				|| strpos($mysqlType, 'bool') !== false) {
+			$type = 'boolean';
 		}
 		
+		if (strpos(strtolower($mysqlType), 'blob') !== false) {
+			$type = 'blob';
+		}
+
 		return $type;
 	}
 		
