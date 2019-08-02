@@ -334,7 +334,16 @@ class DBController
 							break;
 						case "bt":
 							if (is_array($val) && (count($val)==2)) {
-								$q.="between '".$val[0]."' and '".$val[1]."'";
+								$ft = $route->routeFields[$filterField]->fieldType;
+								switch($ft) {
+									case "date":
+										$q.="between CAST('".$val[0]."' AS DATE) and  CAST('".$val[1]."' AS DATE)";
+										break;
+									default:
+										$q.="between '".$val[0]."' and '".$val[1]."'";
+								}
+
+								
 							}
 							break;
 						default:

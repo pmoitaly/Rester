@@ -29,6 +29,10 @@ class RouteField {
 			$type = 'blob';
 		}
 
+		if (strpos(strtolower($mysqlType), 'date') !== false) {
+			$type = 'date';
+		}
+
 		return $type;
 	}
 		
