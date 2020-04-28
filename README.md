@@ -1,15 +1,15 @@
-#Rester
+#  Rester
 
 Rester is a fork of ArrestDB as codebase with many improvements and new features.
 	
 	ArrestDB: https://github.com/alixaxel/ArrestDB
 	
-##Requeriments
+## Requeriments
 
 - PHP 5.4+ & PDO
 - MySQL
 
-##Features
+## Features
 
 - Create an API in 5 minutes
 - Auto-generation of swagger-ui documentation on http://api.example.com/doc/
@@ -18,13 +18,13 @@ Rester is a fork of ArrestDB as codebase with many improvements and new features
 - Custom API functions
 - Filters
 
-##In this fork
+## In this fork
 - Added support for blob and date fields 
 - Changed class constructors names to __construct 
 - Added [ne] (not equal) and [bt] (between) operators
 
 
-##Installation
+## Installation
 
 Edit `config.php`, here are some examples:
 
@@ -46,7 +46,7 @@ define('FILE_UPLOAD_PATH', 'uploads');
 
 ```
 
-##API Design
+## API Design
 
 The actual API design is very straightforward and follows the design patterns of the majority of APIs.
 
@@ -103,7 +103,7 @@ Please note that `GET` calls accept the following query string variables:
 - `parameter[ge]` (greater or equals search)
 - `parameter[le]` (less or equals search)
 
-##Changelog
+## Changelog
 
 - **beta** ~~Reaching beta stage~~
 
@@ -111,6 +111,6 @@ Please note that `GET` calls accept the following query string variables:
 Rester is a nearly complete rewrite of [ArrestDB](ArrestDB: https://github.com/alixaxel/ArrestDB) with many additional features.
 ArrestDB is a complete rewrite of [Arrest-MySQL](https://github.com/gilbitron/Arrest-MySQL) with several optimizations and additional features.
 
-##License (MIT)
+## License (MIT)
 
 Copyright (c) 2014 mOddity Mobile S.L. (http://www.moddity.net)
